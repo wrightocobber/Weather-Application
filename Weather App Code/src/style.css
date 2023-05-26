@@ -83,7 +83,8 @@ ul {
 .weatherDescription ul {
   list-style: none;
 }
-.weatherDescription li {
+
+li::first-letter {
   text-transform: capitalize;
 }
 
