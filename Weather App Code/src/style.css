@@ -1,6 +1,6 @@
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #f1bcf5;
+  background-color: #feeeff;
 }
 .app {
   max-width: 700px;
@@ -72,7 +72,7 @@ body {
   font-weight: 400;
 }
 .weatherDescription {
-  margin: 20px;
+  margin: 0 auto;
 }
 .weatherDescription h1,
 ul {
@@ -83,11 +83,15 @@ ul {
 .weatherDescription ul {
   list-style: none;
 }
+.weatherDescription li {
+  text-transform: capitalize;
+}
 
 .weatherDescription h1 {
-  font-family: "Vollkorn", serif;
+  font-family: "Righteous", cursive;
   line-height: 48px;
   margin: 20px 0 10px;
+  margin-bottom: 20px;
   font-size: 58px;
   color: #432550;
 }
@@ -98,7 +102,8 @@ ul {
 .weatherDescription .weatherUnit {
   font-size: 18px;
   position: relative;
-  top: -30px;
+  top: -90px;
+  left: 60px;
 }
 .weatherDescription .svg {
   text-align: center;
@@ -110,6 +115,7 @@ ul {
 
 .weatherForecast {
   text-align: center;
+  padding: 30px 10px;
 }
 
 .forecastTemperatures {
