@@ -15,7 +15,7 @@ body {
   padding: 40px;
 }
 .weatherIcon {
-  max-width: 130px;
+  max-width: 140px;
   max-height: 120px;
 }
 .btn-primary {
@@ -82,6 +82,11 @@ body {
 ul {
   padding: 0;
   margin: 0;
+}
+
+.currentTemperature .active {
+  color: #3e2e58;
+  cursor: default;
 }
 
 .weatherDescription ul {
