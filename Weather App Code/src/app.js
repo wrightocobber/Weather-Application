@@ -24,7 +24,6 @@ function formatDate(timestamp) {
   }
 }
 function showTemperature(apiResponse) {
-  console.log(apiResponse);
   let cityElement = document.querySelector("#city");
   let tempElement = document.querySelector("#temperature");
   let conditionElement = document.querySelector("#condition");
@@ -61,15 +60,26 @@ function displayCelciusTemp(event) {
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(celciusEquation);
 }
-
 let fahrenheitLink = document.querySelector("#unitLink");
 fahrenheitLink.addEventListener("click", displayFahTemp);
 
 let celciusLink = document.querySelector("#celciusLink");
 celciusLink.addEventListener("click", displayCelciusTemp);
 
-let apiKey = "78af09ec4f1b3eda1a73782o76t19456";
-let city = "Sydney";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric;`;
-axios.get(apiUrl).then(showTemperature);
+function search(city) {
+  let apiKey = "78af09ec4f1b3eda1a73782o76t19456";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric;`;
+  axios.get(apiUrl).then(showTemperature);
+}
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  console.log(cityInputElement.value);
+  search(cityInputElement.value);
+}
+
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
 let celciusTemperature = null;
+search("perth");
