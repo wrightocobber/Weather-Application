@@ -130,6 +130,7 @@ li::first-letter {
 
 .forecastTemperatures {
   margin-top: 10px;
+  font-size: 14px;
 }
 .forecast-weekday {
   padding: 10px auto;

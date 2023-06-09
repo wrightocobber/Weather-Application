@@ -72,6 +72,35 @@ function handleSubmit(event) {
   console.log(cityInputElement.value);
   search(cityInputElement.value);
 }
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let days = ["Fri", "Sat", "Sun", "Mon"];
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      ` <div class="col-2">
+                    <div class="forecast-weekday">${day}</div>
+                    <div class="forecastIcon">
+                        <img
+                        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+                        alt="Broken Clouds"
+                        id="forecastIcon-monday"
+                        class="forecastWeatherIcon"
+                        width ="82px"
+                        />
+                    </div>
+                    <div class="forecastTemperatures">
+                        <span class="forecast-temperature-max">26°C <b>|</b></span>
+                        <span class="forecast-temperature-min">13°C</span>
+                    </div>
+                </div>`;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let fahrenheitLink = document.querySelector("#unitLink");
 fahrenheitLink.addEventListener("click", displayFahTemp);
 
@@ -83,3 +112,5 @@ form.addEventListener("submit", handleSubmit);
 
 let celciusTemperature = null;
 search("perth");
+
+displayForecast();
