@@ -23,6 +23,12 @@ function formatDate(timestamp) {
     return `${day} ${hours}:${minutes}`;
   }
 }
+
+function getForecast(coordinates) {
+  let apiKey = "78af09ec4f1b3eda1a73782o76t19456";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  axios.get(apiURL).then(displayForecast);
+}
 function showTemperature(apiResponse) {
   let cityElement = document.querySelector("#city");
   let tempElement = document.querySelector("#temperature");
@@ -42,6 +48,7 @@ function showTemperature(apiResponse) {
   humidity.innerHTML = apiResponse.data.temperature.humidity;
   wind.innerHTML = Math.round(apiResponse.data.wind.speed);
   date.innerHTML = formatDate(apiResponse.data.time * 1000);
+  getForecast(apiResponse.data.coordinates);
 }
 
 function displayFahTemp(event) {
@@ -69,22 +76,37 @@ function search(city) {
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
-  console.log(cityInputElement.value);
   search(cityInputElement.value);
 }
 
-function displayForecast() {
+function formatForecastDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  console.log(response);
   let forecastElement = document.querySelector("#forecast");
+  let days = ["Fri", "Sat", "Sun", "Mon", "Tue"];
   let forecastHTML = `<div class="row">`;
-  let days = ["Fri", "Sat", "Sun", "Mon"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      ` <div class="col-2">
-                    <div class="forecast-weekday">${day}</div>
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        ` <div class="col-2">
+                    <div class="forecast-weekday">${formatForecastDay(
+                      forecastDay.time
+                    )}</div>
+                
                     <div class="forecastIcon">
                         <img
-                        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/broken-clouds-day.png"
+                        src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                          forecastDay.condition.icon
+                        }.png"
                         alt="Broken Clouds"
                         id="forecastIcon-monday"
                         class="forecastWeatherIcon"
@@ -92,10 +114,15 @@ function displayForecast() {
                         />
                     </div>
                     <div class="forecastTemperatures">
-                        <span class="forecast-temperature-max">26°C <b>|</b></span>
-                        <span class="forecast-temperature-min">13°C</span>
+                        <span class="forecast-temperature-max">${Math.round(
+                          forecastDay.temperature.maximum
+                        )}°C <b>|</b></span>
+                        <span class="forecast-temperature-min">${Math.round(
+                          forecastDay.temperature.minimum
+                        )}°C</span>
                     </div>
                 </div>`;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
@@ -112,5 +139,3 @@ form.addEventListener("submit", handleSubmit);
 
 let celciusTemperature = null;
 search("perth");
-
-displayForecast();
