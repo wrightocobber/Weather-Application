@@ -89,7 +89,6 @@ function formatForecastDay(timestamp) {
 
 function displayForecast(response) {
   let forecast = response.data.daily;
-  console.log(response);
   let forecastElement = document.querySelector("#forecast");
   let days = ["Fri", "Sat", "Sun", "Mon", "Tue"];
   let forecastHTML = `<div class="row">`;
@@ -127,6 +126,21 @@ function displayForecast(response) {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
+
+function showCurrentPosition(coordinates) {
+  let apiKey = "78af09ec4f1b3eda1a73782o76t19456";
+  let longitude = coordinates.coords.longitude;
+  let latitude = coordinates.coords.latitude;
+  let apiURL = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=metric`;
+  console.log(apiURL);
+  axios.get(apiURL).then(showTemperature);
+}
+
+function getCurrentPosition() {
+  navigator.geolocation.getCurrentPosition(showCurrentPosition);
+}
+let button = document.querySelector("#locationButton ");
+button.addEventListener("click", getCurrentPosition);
 
 let fahrenheitLink = document.querySelector("#unitLink");
 fahrenheitLink.addEventListener("click", displayFahTemp);
