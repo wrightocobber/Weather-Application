@@ -1,17 +1,25 @@
 body {
   font-family: "Poppins", sans-serif;
-  background-color: #feeeff;
+  background-image: url("/media/landscape.jpg");
+  filter: hue-rotate(341deg) saturate(112%);
+  background-repeat: no-repeat;
+  background-size: 2020px 1080px;
+}
+.glass {
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(0px);
 }
 .app {
   max-width: 700px;
   margin: 0 auto;
   margin-top: 20px;
 }
+
 .weather {
-  background: #fff;
+  border: 1px solid #3e2e58;
   border-radius: 16px;
-  box-shadow: 1px 16px 20px rgba(64, 52, 92, 0.107);
-  color: #9368a6;
+  box-shadow: 0px 8px 32px rgba(64, 52, 92, 0.107);
+  color: #46185b;
   padding: 40px;
 }
 .weatherIcon {
@@ -19,8 +27,9 @@ body {
   max-height: 120px;
 }
 .btn-primary {
-  background-color: #f24444;
+  background-image: linear-gradient(150deg, #a286c0, #5e4e98 50%, #abc9e7);
   color: #fff;
+  border: none;
   border-radius: 20px;
   border-color: #f24444;
   display: inline-block;
@@ -28,18 +37,19 @@ body {
   height: 50px;
   line-height: 20px;
   padding: 15px 20px;
-  transition: all 200ms ease-in;
+  transition: all 150ms ease-in;
   margin: 0 20px 0 10px;
   box-shadow: 1px 2px 4px rgba(137, 137, 155, 0.3);
 }
 .btn-primary:hover,
 .btn-outline-primary:hover {
-  background-color: #bf3b3b;
+  background-image: linear-gradient(150deg, #a286c0, #443677 50%, #89a1b9);
+  box-shadow: 0 0 18px #efe5ff;
 }
 .btn-secondary {
-  background-color: #f9f7fe;
-  color: #f24444;
-  border-color: #bf3b3b;
+  background-image: linear-gradient(150deg, #a286c0, #403566 50%, #abc9e7);
+  border: none;
+  color: #f6f1f1;
   border-radius: 50px;
   display: inline-block;
   font-size: 20px;
@@ -47,10 +57,12 @@ body {
   line-height: 20px;
   padding: 15px 15px;
   margin-left: 20px;
+  transition: all 150ms ease-in;
   box-shadow: 1px 2px 4px rgba(137, 137, 155, 0.3);
 }
 .btn-secondary:hover {
-  background-color: #bf3b3b;
+  background-image: linear-gradient(150deg, #a286c0, #443677 50%, #89a1b9);
+  box-shadow: 0 0 18px #efe5ff;
 }
 
 .searchBox {
@@ -72,7 +84,7 @@ body {
 .searchBox:focus {
   outline: none !important;
   border-color: #9355c2;
-  box-shadow: 0 0 10px #719ece;
+  box-shadow: 0 0 10px #e0fffb;
 }
 
 .searchBox::placeholder {
@@ -109,14 +121,14 @@ li::first-letter {
   color: #432550;
 }
 .weatherDescription .temperature {
-  font-size: 58px;
+  font-size: 64px;
   color: #432550;
 }
 .weatherDescription .weatherUnit {
   font-size: 18px;
   position: relative;
   top: -90px;
-  left: 60px;
+  left: 90px;
 }
 .weatherDescription .svg {
   text-align: center;
@@ -137,11 +149,13 @@ li::first-letter {
 }
 .forecast-weekday {
   padding: 10px auto;
-  font-weight: 500;
+  font-weight: 600;
+  color: #543f77;
 }
 .forecast-temperature-max {
   font-weight: 300;
   color: #bf3b3b;
+  font-weight: 600;
 }
 .forecast-temperature-max b {
   color: rgb(215, 215, 231);
@@ -153,6 +167,6 @@ footer {
 }
 footer i {
   font-weight: bold;
-  color: #9368a6;
+  color: #363a77;
   font-style: normal;
 }
