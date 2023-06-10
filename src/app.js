@@ -132,7 +132,6 @@ function showCurrentPosition(coordinates) {
   let longitude = coordinates.coords.longitude;
   let latitude = coordinates.coords.latitude;
   let apiURL = `https://api.shecodes.io/weather/v1/current?lat=${latitude}&lon=${longitude}&key=${apiKey}&units=metric`;
-  console.log(apiURL);
   axios.get(apiURL).then(showTemperature);
 }
 
